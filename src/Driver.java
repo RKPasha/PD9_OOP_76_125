@@ -35,13 +35,45 @@ public class Driver {
                 case 1:
                     task1 t1 = new task1();
                     String text = JOptionPane.showInputDialog(null, "Enter the string :" ,"Task 1",1);
+                    int words = t1.wordCounter(text);
                     int vowels = t1.vowelCounter(text);
                     int punctuations =t1.puncCount(text);
-                    JOptionPane.showMessageDialog(null, "Number of vowels : " +vowels +"\nNumber of punctuations : " +punctuations, "Task1", 1);
+                    JOptionPane.showMessageDialog(null, "Number of Words: " +words +"\nNumber of vowels : " +vowels +"\nNumber of punctuations : " +punctuations, "Task1", 1);
                     break;
                 case 2:
+                    task2 t2 = new task2();
+                    String text1 = JOptionPane.showInputDialog(null, "Enter the string :" ,"Task 2",1);
+                    t2.sentenceSpliter(text1);
                     break;
                 case 3:
+                    task3 t3 = new task3();
+                    int inpt = -1;
+                    do{                        
+                    String input1 = JOptionPane.showInputDialog(null, "What you want to check?\n\n"
+                            + "> Enter 1 to check ridMultipleBlank(String s)\n"
+                            + "> Enter 2 to check removeInteger(String s)\n"
+                            + "> Enter 3 to check stringEncryption(String s)\n"
+                            + "> Enter 0 to exit\n\n", "Task 3", 1);
+                        try {
+                            inpt = Integer.parseInt(input1);
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(null, "You have entered an Invalid value.");
+                        }
+                        switch(inpt){
+                            case 1:
+                                String text2 = JOptionPane.showInputDialog(null, "Enter the string :", "Task 3", 1);
+                                JOptionPane.showMessageDialog(null, t3.ridMultipleBlank(text2));
+                                break;
+                            case 2:
+                                String text3 = JOptionPane.showInputDialog(null, "Enter the string :", "Task 3", 1);
+                                JOptionPane.showMessageDialog(null, t3.removeInteger(text3));
+                                break;
+                            case 3:
+                                break;
+                            case 0:
+                                break;
+                        }
+                    }while(inpt != 0);
                     break;
                 case 4:
                     break;
@@ -57,6 +89,15 @@ public class Driver {
 }
 
 class task1{
+    int wordCounter(String text){
+        int count = 1;
+        for(int i = 0; i < text.length(); i++){
+            if(text.charAt(i) == ' '){
+                count++;
+            }
+        }
+        return count;
+    }
     int vowelCounter(String text){
             int count = 0;
         for(int i = 0; i < text.length(); i++){
@@ -81,10 +122,27 @@ class task1{
     }
 }
 class task2{
-    
+    void sentenceSpliter(String text){
+         for (int i = 0; i < text.length(); i++) {
+            System.out.println(text.charAt(i));
+        }
+    }
 }
 class task3{
-    
+    String ridMultipleBlank(String s){
+        String result = s.replaceAll("\\s+", " ");
+        return result;
+    }
+    String removeInteger(String s){
+        String result = "";
+         for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) >= '0' && s.charAt(i) <= '9' ) {
+            }else{
+                result += s.charAt(i);
+            }
+        }
+        return result;
+    }
 }
 class task4{
     
