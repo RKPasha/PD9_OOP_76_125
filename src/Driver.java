@@ -69,6 +69,8 @@ public class Driver {
                                 JOptionPane.showMessageDialog(null, t3.removeInteger(text3));
                                 break;
                             case 3:
+                                String text4 = JOptionPane.showInputDialog(null, "Enter the string :", "Task 3", 1);
+                                JOptionPane.showMessageDialog(null, t3.stringEncryption(text4));
                                 break;
                             case 0:
                                 break;
@@ -143,7 +145,14 @@ class task3{
         }
         return result;
     }
+    String stringEncryption(String s){
+        String result = "";
+        for (int i = 0; i < s.length(); i++) {
+            result += s.charAt(i) +'@';
+        }
+        return result;
+    }
 }
 class task4{
-    
+    //write your code here
 }
