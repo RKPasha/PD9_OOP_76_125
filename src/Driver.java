@@ -33,6 +33,11 @@ public class Driver {
             }
             switch (option) {
                 case 1:
+                    task1 t1 = new task1();
+                    String text = JOptionPane.showInputDialog(null, "Enter the string :" ,"Task 1",1);
+                    int vowels = t1.vowelCounter(text);
+                    int punctuations =t1.puncCount(text);
+                    JOptionPane.showMessageDialog(null, "Number of vowels : " +vowels +"\nNumber of punctuations : " +punctuations, "Task1", 1);
                     break;
                 case 2:
                     break;
@@ -52,7 +57,28 @@ public class Driver {
 }
 
 class task1{
-    
+    int vowelCounter(String text){
+            int count = 0;
+        for(int i = 0; i < text.length(); i++){
+            if((text.charAt(i) == 'a' || text.charAt(i) == 'A') || (text.charAt(i) == 'e' || text.charAt(i) == 'E') || (text.charAt(i) == 'i' || text.charAt(i) == 'I') || (text.charAt(i) == 'o' || text.charAt(i) == 'O') || (text.charAt(i) == 'u' || text.charAt(i) == 'U') ){
+                count++;
+            }
+        }
+        return count;
+    }
+    int puncCount(String text) {
+            int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == '.' || text.charAt(i) == ',' || text.charAt(i) == '"' || text.charAt(i) == ';' || text.charAt(i) == ':' || text.charAt(i) == '-') {
+                count++;
+            }
+        }
+        return count;
+    }
+    boolean findSubString(String text, String sub){
+        boolean flag = false;
+        return flag;
+    }
 }
 class task2{
     
