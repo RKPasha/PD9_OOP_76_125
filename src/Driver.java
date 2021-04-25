@@ -19,8 +19,9 @@ public class Driver {
         // TODO code application logic here
         int option = -1;
         String subOption = "";
+        String data1 = "", data2 = "", res = "";
         do {
-
+            
             String input = JOptionPane.showInputDialog(null, "Programming Day Group Tasks\n\n"
                     + "-> Enter 1 to check Task1\n"
                     + "-> Enter 2 to check Task2\n"
@@ -83,26 +84,37 @@ public class Driver {
                         subOption = JOptionPane.showInputDialog(null, "What you want to Check?\n\n"
                                 + "1- Find Maximum Occuring Character in a String\n"
                                 + "2- Remove characters from firstString which are in second String\n"
+                                + "3- Reverse a whole String\n"
                                 + "R- to return Back\n"
                                 + "0- to exit", "Group Tasks", 1);
                         switch (subOption) {
                             case "1":
-                                String data1 = JOptionPane.showInputDialog(null, "Enter a String:");
+                                data1 = ""; res = "";
+                                data1 = JOptionPane.showInputDialog(null, "Enter a String:");
                                 MyString str1 = new MyString();
-                                String characters = str1.findMaxOcurringChar(data1);
+                                res = str1.findMaxOcurringChar(data1);
                                 JOptionPane.showMessageDialog(null, "Maximum Occurring Character or Characters in String: '" + data1
-                                        + "' are:\n" + characters);
+                                        + "' are:\n" + res);
                                 break;
 
                             case "2":
-                                String data2 = JOptionPane.showInputDialog(null, "Enter First String:");
-                                String data3 = JOptionPane.showInputDialog(null, "Enter Second String:");
+                                data1 = ""; data2 = "";
+                                data1 = JOptionPane.showInputDialog(null, "Enter First String:");
+                                data2 = JOptionPane.showInputDialog(null, "Enter Second String:");
                                 MyString str2 = new MyString();
-                                String data4 = str2.removeCharacters(data2, data3);
-                                if(data4.equals("")) {
-                                    data4 = data4.concat("Resulted String is Empty!!!");
+                                data1 = str2.removeCharacters(data1, data2);
+                                if(res.equals("")) {
+                                    JOptionPane.showMessageDialog(null, "Resulted String Empty:\n");
                                 }
-                                JOptionPane.showMessageDialog(null, "Resulted String is:\n" + data4);
+                                JOptionPane.showMessageDialog(null, "Resulted String is:\n" + data1);
+                                break;
+                                
+                            case "3":
+                                data1 = "";
+                                MyString str3 = new MyString();
+                                data1 = JOptionPane.showInputDialog(null, "Enter a String: ");
+                                data1 = str3.reverseString(data1);
+                                JOptionPane.showMessageDialog(null, "Reversed String is: " + data1);
                                 break;
                         }
                     } while (!subOption.equals("R") && !subOption.equals("r") && !subOption.equals("0"));
@@ -243,6 +255,15 @@ class MyString {
             str1 = res1;
             res1 = "";
         }
+        
         return res2;
+    }
+    
+    public String reverseString(String str) {
+        String res = "";
+        for(int i=str.length()-1; i>=0; i--) {
+            res = res + str.charAt(i);
+        }
+        return res;
     }
 }
