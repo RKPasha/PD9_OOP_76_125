@@ -84,7 +84,8 @@ public class Driver {
                         subOption = JOptionPane.showInputDialog(null, "What you want to Check?\n\n"
                                 + "1- Find Maximum Occuring Character in a String\n"
                                 + "2- Remove characters from firstString which are in second String\n"
-                                + "3- Reverse a whole String\n"
+                                + "3- Reverse a Whole String\n"
+                                + "4- Reverse Words in a String\n"
                                 + "R- to return Back\n"
                                 + "0- to exit", "Group Tasks", 1);
                         switch (subOption) {
@@ -114,7 +115,15 @@ public class Driver {
                                 MyString str3 = new MyString();
                                 data1 = JOptionPane.showInputDialog(null, "Enter a String: ");
                                 data1 = str3.reverseString(data1);
-                                JOptionPane.showMessageDialog(null, "Reversed String is: " + data1);
+                                JOptionPane.showMessageDialog(null, "Reversed String is:\n" + data1);
+                                break;
+                                
+                            case "4":
+                                data1 = "";
+                                MyString str4 = new MyString();
+                                data1 = JOptionPane.showInputDialog(null, "Enter a String: ");
+                                data1 = str4.reverseStringWords(data1);
+                                JOptionPane.showMessageDialog(null, "Reversed Words String is:\n" + data1);
                                 break;
                         }
                     } while (!subOption.equals("R") && !subOption.equals("r") && !subOption.equals("0"));
@@ -215,7 +224,6 @@ class MyString {
         }
 
         int largest = count[0];
-        //System.out.println(count[111]);
         for (int i = 0; i < 256; i++) {
             if (largest <= count[i]) {
                 largest = count[i];
@@ -264,6 +272,40 @@ class MyString {
         for(int i=str.length()-1; i>=0; i--) {
             res = res + str.charAt(i);
         }
+        return res;
+    }
+    
+    public String reverseStringWords(String str) {
+        String res = "";
+        String word = "";
+        String reversedWord = "";
+        String spaces = "";
+        int k = 0;
+        for(int i=str.length()-1; i>=0; i--) {
+            if(str.charAt(i) != 32) {
+                word = word + str.charAt(i);
+            }
+            else {
+                spaces = spaces + " ";
+                k = word.length() - 1;
+                for(int j=0; j<word.length(); j++) {
+                    reversedWord = reversedWord + word.charAt(k);
+                    k--;
+                    
+                }
+                res = res + reversedWord + spaces;
+                reversedWord = "";
+                word = "";
+                spaces = "";
+            }
+        }
+        
+        k = word.length() - 1;
+        for(int z=0; z<word.length(); z++) {
+            reversedWord = reversedWord + word.charAt(k);
+            k--;
+        }
+        res = res + reversedWord + spaces;
         return res;
     }
 }
