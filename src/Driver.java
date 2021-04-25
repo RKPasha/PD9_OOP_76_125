@@ -89,6 +89,7 @@ public class Driver {
                                 + "4- Reverse Words in a String\n"
                                 + "5- Check Anagram Strings\n"
                                 + "6- Check Palindrome String\n"
+                                + "7- Convert Numbers in String to Integer\n"
                                 + "R- to return Back\n"
                                 + "0- to exit", "Group Tasks", 1);
                         switch (subOption) {
