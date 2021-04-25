@@ -89,7 +89,7 @@ public class Driver {
                                 + "4- Reverse Words in a String\n"
                                 + "5- Check Anagram Strings\n"
                                 + "6- Check Palindrome String\n"
-                                + "7- Convert Numbers in String to Integer\n"
+                                + "7- Check if String Contains only Digits\n"
                                 + "R- to return Back\n"
                                 + "0- to exit", "Group Tasks", 1);
                         switch (subOption) {
@@ -155,6 +155,20 @@ public class Driver {
                                 }
                                 else {
                                     res = "'" + data1 + "' is not a Palindrome\n";
+                                }
+                                JOptionPane.showMessageDialog(null, res);
+                                break;
+                                
+                            case "7":
+                                data1 = ""; res = "";
+                                MyString str7 = new MyString();
+                                data1 = JOptionPane.showInputDialog(null, "Enter a String: ");
+                                boolean isNumbered = str7.isStringNumbered(data1);
+                                if(isNumbered != true) {
+                                    res = "Entered String not contains only Digits";
+                                }
+                                else {
+                                    res = "Entered String contains only Digits";
                                 }
                                 JOptionPane.showMessageDialog(null, res);
                                 break;
@@ -410,6 +424,18 @@ class MyString {
                 flag = false;
             }
             k--;
+        }
+        return flag;
+    }
+    
+    
+    public boolean isStringNumbered(String str) {
+        boolean flag = true;
+        for(int i=0; i<str.length(); i++) {
+            if(!(str.charAt(i) >= 48 && str.charAt(i) <= 57)) {
+                flag = false;
+                break;
+            }
         }
         return flag;
     }
