@@ -109,9 +109,11 @@ public class Driver {
                                 MyString str2 = new MyString();
                                 data1 = str2.removeCharacters(data1, data2);
                                 if(res.equals("")) {
-                                    JOptionPane.showMessageDialog(null, "Resulted String Empty:\n");
+                                    JOptionPane.showMessageDialog(null, "Resulted String is Empty\n");
                                 }
-                                JOptionPane.showMessageDialog(null, "Resulted String is:\n" + data1);
+                                else {
+                                    JOptionPane.showMessageDialog(null, "Resulted String is:\n" + data1);
+                                }
                                 break;
                                 
                             case "3":
@@ -260,8 +262,19 @@ class task3 {
     }
 }
 
+
+/**
+ * This class has 7 String manipulation functions which is not provided in standard String class.
+ * @author Mohammad Ahsan
+ */
 class MyString {
 
+    /**
+     * It is a method to return the maximum occurring character in the input string, e.g., if the input string is "Java"
+     * then the function should return 'a'.
+     * @param data String to be checked for Maximum Occurrence of characters.
+     * @return returns String containing characters which are maximum occurred. 
+     */
     public String findMaxOcurringChar(String data) {
         String str = "";
         int[] count = new int[256];
@@ -293,6 +306,15 @@ class MyString {
         return str;
     }
 
+    /**
+     * 
+     * It is a method that takes two strings as arguments and removes the characters from the first string,
+     * which are present in the second string. For example, if the first String "India is great" and the second String is
+     * "in" then the output should be "da s great".
+     * @param str1 String from which characters of another String(i.e, str2) will be removed.
+     * @param str2 String containing characters to be removed in another String(i.e, str1).
+     * @return returns String from which characters of second String(i.e, str2) are removed.
+     */
     public String removeCharacters(String str1, String str2) {
         String res1 = "";
         String res2 = "";
@@ -314,6 +336,11 @@ class MyString {
         return res2;
     }
     
+    /**
+     * It is a method to reverse a String. For example, if a given input is "abcd," then your function should return "dcba".
+     * @param str String to be reversed
+     * @return returns all reversed characters from given String (i.e, str).
+     */
     public String reverseString(String str) {
         String res = "";
         for(int i=str.length()-1; i>=0; i--) {
@@ -322,6 +349,12 @@ class MyString {
         return res;
     }
     
+    /**
+     * It is a method to reverse the words in a given String sentence. For example, if the input is "Java is best,"
+     * then program should print "best is Java". There is no restriction on preserving white space.
+     * @param str String whose words to be reversed.
+     * @return returns Strings of reversed words
+     */
     public String reverseStringWords(String str) {
         String res = "";
         String word = "";
@@ -356,6 +389,13 @@ class MyString {
         return res;
     }
     
+    /**
+     * It is a method to check if two String is an anagram of each other. An anagram contains are of the same length and 
+     * contains the same character, but in a different order, for example, "Army" and "Mary" is the anagram.
+     * @param str1 String to be compared with str2
+     * @param str2 String to be compared with str1
+     * @return returns true if above two given Strings are Anagram of each other, otherwise returns false.
+     */
     public boolean isAnagram(String str1, String str2) {
         str1 = str1.toLowerCase().trim();
         str2 = str2.toLowerCase().trim();
@@ -377,6 +417,11 @@ class MyString {
         return check;
     }
     
+    /**
+     * It is method to sort a Character array 
+     * @param arr Array to be sorted
+     * @return returns sorted character Array
+     */
     private char[] sortArray(char arr[]) {
         int smallest = 0, num = 0, k = 0;
         for(int i=0; i<arr.length; i++) {
@@ -395,6 +440,11 @@ class MyString {
         return arr;
     }
     
+    /**
+     * It is a method to check if a Given a string is a palindrome. For example,"121" is a palindrome, but "abc" is not.
+     * @param str String to be checked of Palindrome Status.
+     * @return returns true if above given String is Palindrome, otherwise returns false.
+     */
     public boolean isPalindrome(String str) {
         boolean flag = true;
         String res = "";
@@ -429,6 +479,11 @@ class MyString {
     }
     
     
+    /**
+     * It is a method to check if a Given String contains only digits or not.
+     * @param str String to be checked if it consists of only Digits or not
+     * @return returns true if above given String consists of only digits, otherwise returns false.
+     */
     public boolean isStringNumbered(String str) {
         boolean flag = true;
         for(int i=0; i<str.length(); i++) {
