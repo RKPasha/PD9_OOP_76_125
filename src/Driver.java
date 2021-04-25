@@ -18,6 +18,7 @@ public class Driver {
     public static void main(String[] args) {
         // TODO code application logic here
         int option = -1;
+        String subOption = "";
         do {
 
             String input = JOptionPane.showInputDialog(null, "Programming Day Group Tasks\n\n"
@@ -34,32 +35,32 @@ public class Driver {
             switch (option) {
                 case 1:
                     task1 t1 = new task1();
-                    String text = JOptionPane.showInputDialog(null, "Enter the string :" ,"Task 1",1);
+                    String text = JOptionPane.showInputDialog(null, "Enter the string :", "Task 1", 1);
                     int words = t1.wordCounter(text);
                     int vowels = t1.vowelCounter(text);
-                    int punctuations =t1.puncCount(text);
-                    JOptionPane.showMessageDialog(null, "Number of Words: " +words +"\nNumber of vowels : " +vowels +"\nNumber of punctuations : " +punctuations, "Task1", 1);
+                    int punctuations = t1.puncCount(text);
+                    JOptionPane.showMessageDialog(null, "Number of Words: " + words + "\nNumber of vowels : " + vowels + "\nNumber of punctuations : " + punctuations, "Task1", 1);
                     break;
                 case 2:
                     task2 t2 = new task2();
-                    String text1 = JOptionPane.showInputDialog(null, "Enter the string :" ,"Task 2",1);
+                    String text1 = JOptionPane.showInputDialog(null, "Enter the string :", "Task 2", 1);
                     t2.sentenceSpliter(text1);
                     break;
                 case 3:
                     task3 t3 = new task3();
                     int inpt = -1;
-                    do{                        
-                    String input1 = JOptionPane.showInputDialog(null, "What you want to check?\n\n"
-                            + "> Enter 1 to check ridMultipleBlank(String s)\n"
-                            + "> Enter 2 to check removeInteger(String s)\n"
-                            + "> Enter 3 to check stringEncryption(String s)\n"
-                            + "> Enter 0 to exit\n\n", "Task 3", 1);
+                    do {
+                        String input1 = JOptionPane.showInputDialog(null, "What you want to check?\n\n"
+                                + "> Enter 1 to check ridMultipleBlank(String s)\n"
+                                + "> Enter 2 to check removeInteger(String s)\n"
+                                + "> Enter 3 to check stringEncryption(String s)\n"
+                                + "> Enter 0 to exit\n\n", "Task 3", 1);
                         try {
                             inpt = Integer.parseInt(input1);
                         } catch (NumberFormatException e) {
                             JOptionPane.showMessageDialog(null, "You have entered an Invalid value.");
                         }
-                        switch(inpt){
+                        switch (inpt) {
                             case 1:
                                 String text2 = JOptionPane.showInputDialog(null, "Enter the string :", "Task 3", 1);
                                 JOptionPane.showMessageDialog(null, t3.ridMultipleBlank(text2));
@@ -75,9 +76,32 @@ public class Driver {
                             case 0:
                                 break;
                         }
-                    }while(inpt != 0);
+                    } while (inpt != 0);
                     break;
                 case 4:
+                    do {
+                        subOption = JOptionPane.showInputDialog(null, "What you want to Check?\n\n"
+                                + "1- Find Maximum Occuring Character in a String\n"
+                                + "2- Remove characters from firstString which are in second String\n"
+                                + "R- to return Back\n"
+                                + "0- to exit", "Group Tasks", 1);
+                        switch (subOption) {
+                            case "1":
+                                String data1 = JOptionPane.showInputDialog(null, "Enter a String:");
+                                MyString str1 = new MyString();
+                                String characters = str1.findMaxOcurringChar(data);
+                                JOptionPane.showMessageDialog(null, "Maximum Occurring Character or Characters in String: '" + data1
+                                        + "' are:\n" + characters);
+                                break;
+                                
+                            case "2":
+                                String data2 = JOptionPane.showInputDialog(null, "Enter First String:"); 
+                                String data3 = JOptionPane.showInputDialog(null, "Enter Second String:");
+                                MyString str2 = new MyString();
+                                String data4 = str2.removeCharacters(data2, data3);
+                                break;
+                        }
+                    } while (!subOption.equals("R") && !subOption.equals("r") && !subOption.equals("0"));
                     break;
                 case 0:
                     break;
@@ -85,32 +109,35 @@ public class Driver {
                     JOptionPane.showMessageDialog(null, "You have entered an invalid option. Try Again with Correct entry.");
                     break;
             }
-        } while (option != 0);
+        } while (option != 0 && !(subOption.equals("0")));
     }
 
 }
 
-class task1{
-    int wordCounter(String text){
+class task1 {
+
+    int wordCounter(String text) {
         int count = 1;
-        for(int i = 0; i < text.length(); i++){
-            if(text.charAt(i) == ' '){
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == ' ') {
                 count++;
             }
         }
         return count;
     }
-    int vowelCounter(String text){
-            int count = 0;
-        for(int i = 0; i < text.length(); i++){
-            if((text.charAt(i) == 'a' || text.charAt(i) == 'A') || (text.charAt(i) == 'e' || text.charAt(i) == 'E') || (text.charAt(i) == 'i' || text.charAt(i) == 'I') || (text.charAt(i) == 'o' || text.charAt(i) == 'O') || (text.charAt(i) == 'u' || text.charAt(i) == 'U') ){
+
+    int vowelCounter(String text) {
+        int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if ((text.charAt(i) == 'a' || text.charAt(i) == 'A') || (text.charAt(i) == 'e' || text.charAt(i) == 'E') || (text.charAt(i) == 'i' || text.charAt(i) == 'I') || (text.charAt(i) == 'o' || text.charAt(i) == 'O') || (text.charAt(i) == 'u' || text.charAt(i) == 'U')) {
                 count++;
             }
         }
         return count;
     }
+
     int puncCount(String text) {
-            int count = 0;
+        int count = 0;
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == '.' || text.charAt(i) == ',' || text.charAt(i) == '"' || text.charAt(i) == ';' || text.charAt(i) == ':' || text.charAt(i) == '-') {
                 count++;
@@ -118,41 +145,86 @@ class task1{
         }
         return count;
     }
-    boolean findSubString(String text, String sub){
+
+    boolean findSubString(String text, String sub) {
         boolean flag = false;
         return flag;
     }
 }
-class task2{
-    void sentenceSpliter(String text){
-         for (int i = 0; i < text.length(); i++) {
+
+class task2 {
+
+    void sentenceSpliter(String text) {
+        for (int i = 0; i < text.length(); i++) {
             System.out.println(text.charAt(i));
         }
     }
 }
-class task3{
-    String ridMultipleBlank(String s){
+
+class task3 {
+
+    String ridMultipleBlank(String s) {
         String result = s.replaceAll("\\s+", " ");
         return result;
     }
-    String removeInteger(String s){
+
+    String removeInteger(String s) {
         String result = "";
-         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) >= '0' && s.charAt(i) <= '9' ) {
-            }else{
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            } else {
                 result += s.charAt(i);
             }
         }
         return result;
     }
-    String stringEncryption(String s){
+
+    String stringEncryption(String s) {
         String result = "";
         for (int i = 0; i < s.length(); i++) {
-            result += s.charAt(i) +'@';
+            result += s.charAt(i) + '@';
         }
         return result;
     }
 }
-class task4{
-    //write your code here
+
+class MyString {
+
+    public String findMaxOcurringChar(String data) {
+        String str = "";
+        int[] count = new int[256];
+        for (int i = 0; i < data.length(); i++) {
+            int ascii = (int) data.charAt(i);
+            count[ascii]++;
+        }
+
+        int largest = count[0];
+        //System.out.println(count[111]);
+        for (int i = 0; i < 256; i++) {
+            if (largest <= count[i]) {
+                largest = count[i];
+            }
+        }
+        
+        
+        for(int i=0; i<256; i++) {
+            if(largest == count[i]) {
+                char c = (char)i;
+                str = str + c;
+            }
+        }
+        if(str.length() > 1) {
+            String str1 = Character.toString(str.charAt(0));
+            for(int i=1; i<str.length(); i++) {
+                str1 = str1 + " " + str.charAt(i);
+            }
+            return str1;
+        }
+        return str;
+    }
+    
+    public String removeCharacters(String str1, String str2) {
+        String res = "";
+        return res;
+    }
 }
