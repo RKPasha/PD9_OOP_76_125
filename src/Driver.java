@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /*
@@ -86,6 +87,7 @@ public class Driver {
                                 + "2- Remove characters from firstString which are in second String\n"
                                 + "3- Reverse a Whole String\n"
                                 + "4- Reverse Words in a String\n"
+                                + "5- Check Anagram Strings\n"
                                 + "R- to return Back\n"
                                 + "0- to exit", "Group Tasks", 1);
                         switch (subOption) {
@@ -124,6 +126,21 @@ public class Driver {
                                 data1 = JOptionPane.showInputDialog(null, "Enter a String: ");
                                 data1 = str4.reverseStringWords(data1);
                                 JOptionPane.showMessageDialog(null, "Reversed Words String is:\n" + data1);
+                                break;
+                                
+                            case "5":
+                                data1 = ""; data2 = ""; res = "";
+                                MyString str5 = new MyString();
+                                data1 = JOptionPane.showInputDialog(null, "Enter First String: ");
+                                data2 = JOptionPane.showInputDialog(null, "Enter Second String: ");
+                                boolean check = str5.isAnagram(data1, data2);
+                                if(check == true) {
+                                    res = data1 + " and " + data2 + " are Anagrams of each other\n";
+                                }
+                                else {
+                                    res = data1 + " and " + data2 + " are not Anagrams of each other\n";
+                                }
+                                JOptionPane.showMessageDialog(null, res);
                                 break;
                         }
                     } while (!subOption.equals("R") && !subOption.equals("r") && !subOption.equals("0"));
@@ -307,5 +324,44 @@ class MyString {
         }
         res = res + reversedWord + spaces;
         return res;
+    }
+    
+    public boolean isAnagram(String str1, String str2) {
+        str1 = str1.toLowerCase().trim();
+        str2 = str2.toLowerCase().trim();
+        boolean flag = true, check = false;
+        if(str1.length() == str2.length() && !str1.equals(str2)) {
+            char ch1[] = str1.toCharArray();
+            char ch2[] = str2.toCharArray();
+            ch1 = sortArray(ch1);
+            ch2 = sortArray(ch2);
+            for(int k=0; k<ch1.length; k++) {
+                if(ch1[k] != ch2[k]) {
+                    flag = false;
+                }
+            }
+            if(flag == true) {
+                check = true;
+            }
+        }
+        return check;
+    }
+    
+    private char[] sortArray(char arr[]) {
+        int smallest = 0, num = 0, k = 0;
+        for(int i=0; i<arr.length; i++) {
+            smallest = arr[i];
+            num = arr[i];
+            k = i;
+            for(int j=i; j<arr.length; j++) {
+                if(smallest > arr[j]) {
+                    smallest = arr[j];
+                    k = j;
+                }
+            }
+           arr[i] = (char)smallest;
+           arr[k] = (char)num;
+        }
+        return arr;
     }
 }
