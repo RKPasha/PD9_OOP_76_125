@@ -264,10 +264,12 @@ class task3 {
 
 
 /**
- * This class has 7 String manipulation functions which is not provided in standard String class.
+ * This class has 7 String manipulation functions which is not provided in standard String class and it extends 
+ * String class through Composition.
  * @author Mohammad Ahsan
  */
 class MyString {
+    String obj = new String();
 
     /**
      * It is a method to return the maximum occurring character in the input string, e.g., if the input string is "Java"
