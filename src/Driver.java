@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  */
 /**
  *
- * @author Abdullah
+ * @author Abdullah & Mohammad Ahsan
  */
 public class Driver {
 
@@ -88,6 +88,7 @@ public class Driver {
                                 + "3- Reverse a Whole String\n"
                                 + "4- Reverse Words in a String\n"
                                 + "5- Check Anagram Strings\n"
+                                + "6- Check Palindrome String\n"
                                 + "R- to return Back\n"
                                 + "0- to exit", "Group Tasks", 1);
                         switch (subOption) {
@@ -135,10 +136,24 @@ public class Driver {
                                 data2 = JOptionPane.showInputDialog(null, "Enter Second String: ");
                                 boolean check = str5.isAnagram(data1, data2);
                                 if(check == true) {
-                                    res = data1 + " and " + data2 + " are Anagrams of each other\n";
+                                    res = "'" + data1 + "' and '" + data2 + "' are Anagrams of each other\n";
                                 }
                                 else {
-                                    res = data1 + " and " + data2 + " are not Anagrams of each other\n";
+                                    res = "'" + data1 + "' and '" + data2 + "' are not Anagrams of each other\n";
+                                }
+                                JOptionPane.showMessageDialog(null, res);
+                                break;
+                                
+                            case "6":
+                                data1 = ""; res = "";
+                                MyString str6 = new MyString();
+                                data1 = JOptionPane.showInputDialog(null, "Enter a String: ");
+                                boolean flag = str6.isPalindrome(data1);
+                                if(flag == true) {
+                                    res = "'" + data1 + "' is Palindrome\n";
+                                }
+                                else {
+                                    res = "'" + data1 + "' is not a Palindrome\n";
                                 }
                                 JOptionPane.showMessageDialog(null, res);
                                 break;
@@ -363,5 +378,38 @@ class MyString {
            arr[k] = (char)num;
         }
         return arr;
+    }
+    
+    public boolean isPalindrome(String str) {
+        boolean flag = true;
+        String res = "";
+        // To converting to Lower Case.
+        for(int i=0; i<str.length(); i++) {
+            if(str.charAt(i) >= 65 && str.charAt(i) <= 90) {
+                res = res + (char)(str.charAt(i) + 32);
+            }
+            else {
+                res = res + str.charAt(i);
+            }
+        }
+        str = res;
+        res = "";
+        
+        // To remove spaces from string
+        for(int i=0; i<str.length(); i++) {
+            if(!(str.charAt(i) <= 32)) {
+                res = res + str.charAt(i);
+            }
+        }
+        str = res;
+        
+        int k = str.length() - 1;
+        for(int i=0; i<str.length() / 2; i++) {
+            if(!(str.charAt(i) == str.charAt(k))) { 
+                flag = false;
+            }
+            k--;
+        }
+        return flag;
     }
 }
