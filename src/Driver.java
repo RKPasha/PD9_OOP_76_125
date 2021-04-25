@@ -100,7 +100,7 @@ public class Driver {
                                 MyString str2 = new MyString();
                                 String data4 = str2.removeCharacters(data2, data3);
                                 if(data4.equals("")) {
-                                    data4 = data4.concat("Resulted String is Empty");
+                                    data4 = data4.concat("Resulted String is Empty!!!");
                                 }
                                 JOptionPane.showMessageDialog(null, "Resulted String is:\n" + data4);
                                 break;
