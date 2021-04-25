@@ -89,16 +89,20 @@ public class Driver {
                             case "1":
                                 String data1 = JOptionPane.showInputDialog(null, "Enter a String:");
                                 MyString str1 = new MyString();
-                                String characters = str1.findMaxOcurringChar(data);
+                                String characters = str1.findMaxOcurringChar(data1);
                                 JOptionPane.showMessageDialog(null, "Maximum Occurring Character or Characters in String: '" + data1
                                         + "' are:\n" + characters);
                                 break;
-                                
+
                             case "2":
-                                String data2 = JOptionPane.showInputDialog(null, "Enter First String:"); 
+                                String data2 = JOptionPane.showInputDialog(null, "Enter First String:");
                                 String data3 = JOptionPane.showInputDialog(null, "Enter Second String:");
                                 MyString str2 = new MyString();
                                 String data4 = str2.removeCharacters(data2, data3);
+                                if(data4.equals("")) {
+                                    data4 = data4.concat("Resulted String is Empty");
+                                }
+                                JOptionPane.showMessageDialog(null, "Resulted String is:\n" + data4);
                                 break;
                         }
                     } while (!subOption.equals("R") && !subOption.equals("r") && !subOption.equals("0"));
@@ -205,26 +209,40 @@ class MyString {
                 largest = count[i];
             }
         }
-        
-        
-        for(int i=0; i<256; i++) {
-            if(largest == count[i]) {
-                char c = (char)i;
+
+        for (int i = 0; i < 256; i++) {
+            if (largest == count[i]) {
+                char c = (char) i;
                 str = str + c;
             }
         }
-        if(str.length() > 1) {
+        if (str.length() > 1) {
             String str1 = Character.toString(str.charAt(0));
-            for(int i=1; i<str.length(); i++) {
+            for (int i = 1; i < str.length(); i++) {
                 str1 = str1 + " " + str.charAt(i);
             }
             return str1;
         }
         return str;
     }
-    
+
     public String removeCharacters(String str1, String str2) {
-        String res = "";
-        return res;
+        String res1 = "";
+        String res2 = "";
+        str1 = str1.toLowerCase();
+        for (int i = 0; i < str2.length(); i++) {
+            char c = str2.charAt(i);
+            for (int j = 0; j < str1.length(); j++) {
+                if (str1.charAt(j) != c) {
+
+                    res1 = res1 + str1.charAt(j);
+
+                }
+            }
+            res2 = res1;
+            str1 = res1;
+            res1 = "";
+        }
+        return res2;
     }
 }
